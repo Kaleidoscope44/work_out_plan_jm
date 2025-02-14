@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application d'entraînement de musculation</title>
+    <link rel="icon" href="../ai-image.jpg" type="image/jpg">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Style_JS/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<header>
+		<h1>Mon programme de musculation</h1>
+		<!-- <div id="exercise-cart" class="exercise-cart">
+			<i class="fas fa-shopping-cart"></i>
+			<span id="cart-count">0</span>
+		</div> -->
+        
+        <div class="notification-box">
+            <span class="notification-count" id="cart-count">0</span>
+            <div class="notification-bell">
+                <span class="bell-top"></span>
+                <span class="bell-middle"></span>
+                <span class="bell-bottom"></span>
+                <span class="bell-rad"></span>
+            </div>
+        </div>
+
+		<div class="cart-actions mt-3">
+			<button id="export-pdf" class="btn btn-warning">
+				<i class="fas fa-file-pdf"></i> Exporter en PDF
+			</button>
+		
+			<button id="clear-cart" class="btn btn-danger">
+				<i class="fas fa-trash"></i> Vider le panier
+			</button>
+		</div>
+		<!-- <button id="export-pdf" class="btn btn-warning">Exporter en PDF</button> -->
+	</header>
+	
+    <nav>
+        <ul>
+            <li>
+                <a href="#">Lundi</a>
+                <ul>
+                    <li><a href="#">Dos</a></li>
+                    <li><a href="#">Biceps</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Mardi</a>
+                <ul>
+                    <li><a href="#">Pectoraux</a></li>
+                    <li><a href="#">Triceps</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Mercredi</a>
+                <ul>
+                    <li><a href="#">Épaules</a></li>
+                    <li><a href="#">Abdominaux</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Jeudi</a>
+                <ul>
+                    <li><a href="#">Jambes</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Vendredi</a>
+                <ul>
+                    <li><a href="#">Full Body</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="training-schedule" class="our_solution_category"></section>
+
+        <div class="modal fade" id="exercise-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-success" id="add-exercise">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mon application de musculation</p>
+    </footer>
+     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="../Style_Js/script.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.1/jspdf.min.js"></script>
+	<!-- jsPDF AutoTable (pour les tableaux dans le PDF) -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
+</body>
+</html>

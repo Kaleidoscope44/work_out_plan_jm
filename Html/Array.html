@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau des Exercices Sélectionnés</title>
+    <link rel="icon" href="../ai-image.jpg" type="image/jpg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tableBody = document.getElementById("exercise-table-body");
+            const savedExercises = JSON.parse(localStorage.getItem("exerciseCart")) || [];
+            
+            savedExercises.forEach(ex => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${ex.day}</td>
+                    <td>${ex.name}</td>
+                    <td>${ex.series}</td>
+                    <td>${ex.reps}</td>
+                    <td>${ex.weight}</td>
+                    <td>${ex.rest}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        });
+
+        function downloadPDF() {
+            const element = document.body;
+            html2pdf().from(element).save("Tableau_Exercices.pdf");
+        }
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="text-center">Tableau des Exercices Sélectionnés</h2>
+            <button class="btn btn-primary" onclick="downloadPDF()">
+                📥 Télécharger PDF
+            </button>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Jour</th>
+                    <th>Exercice</th>
+                    <th>Séries</th>
+                    <th>Répétitions</th>
+                    <th>Poids (kg)</th>
+                    <th>Repos (s)</th>
+                </tr>
+            </thead>
+            <tbody id="exercise-table-body">
+                <!-- Les exercices sélectionnés seront ajoutés ici -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
