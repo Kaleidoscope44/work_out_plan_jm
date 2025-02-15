@@ -35,6 +35,8 @@
     position: relative;
   }
   
+  
+
   header .notification-box {
     position: absolute;
     z-index: 1000;
@@ -174,7 +176,6 @@
   }
   
   @media screen and (max-width: 480px) {
-    /* Réduction de la taille de la cloche et de la notification */
     
     /* Réduction de la notification-box */
     .notification-box {
@@ -323,6 +324,10 @@
     transition: 0.7s;
   }
   
+  .card-text, .modal-body p {
+    text-align: justify;
+  }
+
   .cart-actions .btn {
     margin: 0 15px;
   }
@@ -363,6 +368,10 @@
     background-color: #1f78b4;
   }
   
+  form label {
+    font-weight: bold;
+  }
+
   /* =========================
      Footer
   ========================= */
