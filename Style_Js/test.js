@@ -271,17 +271,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("div");
       card.classList.add("col-md-4", "mb-4"); // Utiliser les classes Bootstrap pour la mise en page
       card.innerHTML = `
-                <div class="card solution_card">
-                    <a href="${exercise.image}" target="_blank">
-                      <img src="${exercise.image}" class="card-img-top" alt="${exercise.name}">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">${exercise.name}</h5>
-                        <p class="card-text">${exercise.description}</p>
-                        <button class="btn btn-primary read_more_btn">En savoir plus</button>
-                    </div>
-                </div>
-            `;
+				  <div class="card solution_card">
+					  <a href="${exercise.image}" target="_blank">
+						<img src="${exercise.image}" class="card-img-top" alt="${exercise.name}">
+					  </a>
+					  <div class="card-body">
+						  <h5 class="card-title">${exercise.name}</h5>
+						  <p class="card-text">${exercise.description}</p>
+						  <button class="btn btn-primary read_more_btn">En savoir plus</button>
+					  </div>
+				  </div>
+			  `;
 
       const readMoreBtn = card.querySelector(".read_more_btn");
       readMoreBtn.addEventListener("click", () => {
@@ -293,20 +293,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Gestion des clics sur les sous-menus
-  // Mise à jour pour les menus Bootstrap
-  const typeLinks = document.querySelectorAll("nav .dropdown-menu a");
+  const typeLinks = document.querySelectorAll("nav ul ul a");
   typeLinks.forEach((typeLink) => {
     typeLink.addEventListener("click", (event) => {
       event.preventDefault();
-      // Remonte jusqu'au parent avec la classe "dropdown"
-      const dropdown = typeLink.closest(".dropdown");
-      // Récupère le jour (ex: "Lundi") depuis le lien dropdown-toggle
-      const selectedDay = dropdown
-        .querySelector(".dropdown-toggle")
-        .textContent.trim()
-        .toLowerCase();
-      // Récupère le type (ex: "Dos", "Biceps", etc.) à partir du lien cliqué
-      const selectedType = typeLink.textContent.trim().toLowerCase();
+      const selectedDay =
+        typeLink.parentNode.parentNode.previousElementSibling.textContent.toLowerCase();
+      const selectedType = typeLink.textContent.toLowerCase();
       displayExercises(selectedDay, selectedType);
     });
   });
@@ -318,26 +311,26 @@ document.addEventListener("DOMContentLoaded", () => {
     modalTitle.textContent = exercise.name;
 
     modalBody.innerHTML = `
-        <p>${exercise.description}</p>
-        <form id="exercise-form">
-            <div class="form-group">
-                <label for="series">Nombre de séries :</label>
-                <input type="number" id="series" class="form-control" min="1" value="3">
-            </div>
-            <div class="form-group">
-                <label for="reps">Nombre de répétitions :</label>
-                <input type="number" id="reps" class="form-control" min="1" value="10">
-            </div>
-            <div class="form-group">
-                <label for="weight">Poids (kg) :</label>
-                <input type="number" id="weight" class="form-control" min="0" value="0">
-            </div>
-            <div class="form-group">
-                <label for="rest">Temps de repos (secondes) :</label>
-                <input type="number" id="rest" class="form-control" min="10" value="60">
-            </div>
-        </form>
-    `;
+		  <p>${exercise.description}</p>
+		  <form id="exercise-form">
+			  <div class="form-group">
+				  <label for="series">Nombre de séries :</label>
+				  <input type="number" id="series" class="form-control" min="1" value="3">
+			  </div>
+			  <div class="form-group">
+				  <label for="reps">Nombre de répétitions :</label>
+				  <input type="number" id="reps" class="form-control" min="1" value="10">
+			  </div>
+			  <div class="form-group">
+				  <label for="weight">Poids (kg) :</label>
+				  <input type="number" id="weight" class="form-control" min="0" value="0">
+			  </div>
+			  <div class="form-group">
+				  <label for="rest">Temps de repos (secondes) :</label>
+				  <input type="number" id="rest" class="form-control" min="10" value="60">
+			  </div>
+		  </form>
+	  `;
 
     // Affichage du modal Bootstrap
     const modal = new bootstrap.Modal(

@@ -31,6 +31,16 @@
             html2pdf().from(element).save("Tableau_Exercices.pdf");
         }
     </script>
+    <style>
+        @media screen and (max-width: 480px) {
+            body {
+            background: #ccc; /* Couleur de fallback */
+            background-image: url("../fond_mobile.jpg"); /* Image optimisée pour mobile */
+            background-size: cover;
+            background-position: center;
+            }
+  }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
