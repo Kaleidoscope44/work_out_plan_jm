@@ -293,13 +293,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Gestion des clics sur les sous-menus
-  const typeLinks = document.querySelectorAll("nav ul ul a");
+  // Mise à jour pour les menus Bootstrap
+  const typeLinks = document.querySelectorAll("nav .dropdown-menu a");
   typeLinks.forEach((typeLink) => {
     typeLink.addEventListener("click", (event) => {
       event.preventDefault();
-      const selectedDay =
-        typeLink.parentNode.parentNode.previousElementSibling.textContent.toLowerCase();
-      const selectedType = typeLink.textContent.toLowerCase();
+      // Remonte jusqu'au parent avec la classe "dropdown"
+      const dropdown = typeLink.closest(".dropdown");
+      // Récupère le jour (ex: "Lundi") depuis le lien dropdown-toggle
+      const selectedDay = dropdown
+        .querySelector(".dropdown-toggle")
+        .textContent.trim()
+        .toLowerCase();
+      // Récupère le type (ex: "Dos", "Biceps", etc.) à partir du lien cliqué
+      const selectedType = typeLink.textContent.trim().toLowerCase();
       displayExercises(selectedDay, selectedType);
     });
   });

@@ -173,6 +173,70 @@
     animation: zoom 3s 3s both infinite;
   }
   
+  @media screen and (max-width: 480px) {
+    /* Réduction de la taille de la cloche et de la notification */
+    
+    /* Réduction de la notification-box */
+    .notification-box {
+      width: 30px;
+      height: 30px;
+      top: 20px;
+      right: 20px;
+    }
+    
+    /* Réduction des éléments de la cloche */
+    .bell-top {
+      width: 3px;
+      height: 3px;
+      border-radius: 1.5px 1.5px 0 0;
+    }
+    
+    .bell-middle {
+      width: 18px;
+      height: 18px;
+      border-radius: 9px 9px 0 0;
+      margin-top: -1px;
+    }
+    
+    .bell-bottom {
+      width: 24px;
+      height: 1px;
+    }
+    
+    .bell-bottom::before {
+      left: 0.5px;
+      border-bottom: 3px solid #fff;
+      border-right: 0 solid transparent;
+      border-left: 3px solid transparent;
+    }
+    
+    .bell-bottom::after {
+      right: 0.5px;
+      border-bottom: 3px solid #fff;
+      border-right: 3px solid transparent;
+      border-left: 0 solid transparent;
+    }
+    
+    .bell-rad {
+      width: 6px;
+      height: 3px;
+      margin-top: 1px;
+      border-radius: 0 0 3px 3px;
+    }
+    
+    /* Réduction de la notification-count */
+    .notification-count {
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      font-size: 12px;
+      top: -3px;
+      right: -3px;
+    }
+  }
+
+
+
   /* =========================
      Navbar Bootstrap
   ========================= */
@@ -186,6 +250,13 @@
     font-weight: bold;
     font-size: 1.5rem;
     color: #333;
+  }
+
+  .navbar-brand img {
+    height: 100%;
+    width: auto;       /* Pour conserver le ratio de l'image */
+    object-fit: contain; /* Assure que l'image est bien contenue dans l'espace */
+    
   }
   
   nav.navbar .navbar-nav .nav-link {

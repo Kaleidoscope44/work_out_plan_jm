@@ -9,28 +9,93 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const tableBody = document.getElementById("exercise-table-body");
-            const savedExercises = JSON.parse(localStorage.getItem("exerciseCart")) || [];
-            
-            savedExercises.forEach(ex => {
+          const tableBody = document.getElementById("exercise-table-body");
+          const savedExercises = JSON.parse(localStorage.getItem("exerciseCart")) || [];
+          
+          // On regroupe les exercices par jour et par partie du corps
+          const groupedExercises = {};
+          savedExercises.forEach(ex => {
+            const day = ex.day;
+            const part = ex.bodyPart || "non défini"; // sécurité si absent
+            if (!groupedExercises[day]) {
+              groupedExercises[day] = {};
+            }
+            if (!groupedExercises[day][part]) {
+              groupedExercises[day][part] = [];
+            }
+            groupedExercises[day][part].push(ex);
+          });
+          
+          // Définir une couleur pour chaque jour (optionnel)
+          const dayColors = {
+            lundi: "#FFD700",    // Or
+            mardi: "#ADFF2F",    // Vert jaune
+            mercredi: "#87CEFA", // Bleu ciel
+            jeudi: "#FFB6C1",    // Rose clair
+            vendredi: "#D8BFD8"  // Thistle
+          };
+          
+          // Définir un séparateur pour distinguer les exercices
+          const separator = "<hr>";
+          
+          // Pour chaque jour, on crée une ou plusieurs lignes
+          for (const day in groupedExercises) {
+            if (groupedExercises.hasOwnProperty(day)) {
+              const parts = groupedExercises[day];
+              const bodyParts = Object.keys(parts); // liste des parties du corps pour ce jour
+              const rowCount = bodyParts.length; // nombre de lignes à créer pour ce jour
+              
+              let firstRow = true;
+              bodyParts.forEach(part => {
+                const exercises = parts[part];
+                const names = exercises.map(ex => ex.name).join(separator);
+                const series = exercises.map(ex => ex.series).join(separator);
+                const reps = exercises.map(ex => ex.reps).join(separator);
+                const weight = exercises.map(ex => ex.weight).join(separator);
+                const rest = exercises.map(ex => ex.rest).join(separator);
+                
                 const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${ex.day}</td>
-                    <td>${ex.name}</td>
-                    <td>${ex.series}</td>
-                    <td>${ex.reps}</td>
-                    <td>${ex.weight}</td>
-                    <td>${ex.rest}</td>
-                `;
+                // Appliquer la couleur de fond si définie
+                if (dayColors[day.toLowerCase()]) {
+                  row.style.backgroundColor = dayColors[day.toLowerCase()];
+                }
+                
+                if (firstRow) {
+                  // Pour la première ligne, on ajoute la cellule du jour avec rowspan
+                  row.innerHTML = `
+                    <td rowspan="${rowCount}">${day.charAt(0).toUpperCase() + day.slice(1)}</td>
+                    <td>${part.charAt(0).toUpperCase() + part.slice(1)}</td>
+                    <td>${names}</td>
+                    <td>${series}</td>
+                    <td>${reps}</td>
+                    <td>${weight}</td>
+                    <td>${rest}</td>
+                  `;
+                  firstRow = false;
+                } else {
+                  // Pour les autres lignes, pas de cellule pour le jour
+                  row.innerHTML = `
+                    <td>${part.charAt(0).toUpperCase() + part.slice(1)}</td>
+                    <td>${names}</td>
+                    <td>${series}</td>
+                    <td>${reps}</td>
+                    <td>${weight}</td>
+                    <td>${rest}</td>
+                  `;
+                }
                 tableBody.appendChild(row);
-            });
+              });
+            }
+          }
         });
-
+        
         function downloadPDF() {
-            const element = document.body;
-            html2pdf().from(element).save("Tableau_Exercices.pdf");
+          const element = document.body;
+          html2pdf().from(element).save("Tableau_Exercices.pdf");
         }
     </script>
+      
+      
     <style>
         @media screen and (max-width: 480px) {
             body {
@@ -50,10 +115,12 @@
                 📥 Télécharger PDF
             </button>
         </div>
+        <div id="exercise-table-container"></div>
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
                 <tr>
                     <th>Jour</th>
+                    <th>Partie du corps</th>
                     <th>Exercice</th>
                     <th>Séries</th>
                     <th>Répétitions</th>

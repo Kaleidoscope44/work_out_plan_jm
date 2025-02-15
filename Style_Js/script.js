@@ -285,7 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const readMoreBtn = card.querySelector(".read_more_btn");
       readMoreBtn.addEventListener("click", () => {
-        openModal(day, exercise);
+        openModal(day, exercise, type);
       });
 
       trainingSchedule.appendChild(card);
@@ -311,7 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  function openModal(day, exercise) {
+  function openModal(day, exercise, bodyPart) {
     const modalTitle = document.querySelector("#exercise-modal .modal-title");
     const modalBody = document.querySelector("#exercise-modal .modal-body");
 
@@ -347,7 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Associer les données du formulaire au bouton "Ajouter"
     document.getElementById("add-exercise").onclick = function () {
-      addExerciseToCart(day, exercise.name);
+      addExerciseToCart(day, exercise.name, bodyPart);
     };
   }
 });
@@ -361,7 +361,7 @@ const clearCartBtn = document.getElementById("clear-cart"); // Bouton pour vider
 let savedExercises = JSON.parse(localStorage.getItem("exerciseCart")) || [];
 updateCartDisplay();
 
-function addExerciseToCart(day, exerciseName) {
+function addExerciseToCart(day, exerciseName, bodyPart) {
   const series = document.getElementById("series").value;
   const reps = document.getElementById("reps").value;
   const weight = document.getElementById("weight").value;
@@ -370,6 +370,7 @@ function addExerciseToCart(day, exerciseName) {
   const exerciseDetails = {
     name: exerciseName,
     day,
+    bodyPart,
     series,
     reps,
     weight,
@@ -381,7 +382,7 @@ function addExerciseToCart(day, exerciseName) {
 
   updateCartDisplay();
   alert(
-    `Ajouté : ${exerciseName}  (${day} - ${series} séries, ${reps} reps, ${weight}kg, ${rest}s repos`
+    `Ajouté : ${exerciseName}  (${day} - ${bodyPart} - ${series} séries, ${reps} reps, ${weight}kg, ${rest}s repos`
   );
 }
 
