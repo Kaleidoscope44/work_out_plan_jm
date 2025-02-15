@@ -85,17 +85,60 @@ document.addEventListener("DOMContentLoaded", () => {
     mardi: {
       pectoraux: [
         {
-          name: "Développé couché",
+          name: "Développé couché haltères",
           description:
-            "Pour les pectoraux et les triceps. 3 séries de 8 répétitions.",
-          image: "../images/developpe_couche.jpg",
+            "Le développé couché avec haltères (dumbbell bench press) est une variante du développé couché à la barre. C’est un exercice qui permet de développer les muscles pectoraux.",
+          image:
+            "../Images/Pecs/developpe-couche-halteres-exercice-musculation.gif",
         },
         {
-          name: "Pompes",
+          name: "Pec-deck ou butterfly",
           description:
-            "Exercice de base pour les pectoraux. 3 séries de 10 répétitions.",
-          image: "../images/pompes.jpg",
+            "Le pec deck, anciennement appelé butterfly, permet aux débutants comme aux personnes expérimentées de cibler les muscles pectoraux sans avoir à se soucier de l’équilibre à maintenir sur un banc ou un Swiss Ball. C’est également un appareil utile si vous souffrez d’une blessure au bas du dos et que vous devez éviter de rester debout.",
+          image: "../Images/Pecs/pec-deck-butterfly-exercice-musculation.gif",
         },
+        {
+          name: "Développé incliné à la barre",
+          description:
+            "Le développé couché est le roi des exercices pour les pectoraux, car il développe une force massive et permet de bien développer les muscles du torse (pectoraux). La variante inclinée (incline barbell bench press en anglais) va encore plus loin et met vraiment l’accent sur le haut de la poitrine, près des clavicules.",
+          image: "../Images/Pecs/developpe-incline-barre.gif",
+        },
+
+        {
+          name: "Écartés couché avec haltères",
+          description:
+            "C’est un exercice pour les pectoraux, les épaules et les triceps, qui fait appel à un mouvement composé (polyarticulaire) et qui ne permet pas de cibler efficacement un seul muscle.",
+          image: "../Images/Pecs/ecarte-couche-haltere.gif",
+        },
+        {
+          name: "Écartés à la poulie vis-à-vis",
+          description:
+            "Les écartés à la poulie vis-à-vis (cable middle fly) sont une variante du Pec Deck ou Butterfly à la machine, un exercice pour renforcer les muscles pectoraux, et de l’avant des épaules. L’une des principales fonctions des muscles pectoraux est d’amener vos bras en avant de votre corps, c’est exactement ce que font les écartés.",
+          image:
+            "../Images/Pecs/ecarte-poulie-vis-a-vis-exercice-musculation-pectoraux.gif",
+        },
+
+        {
+          name: "Développé décliné avec élastique",
+          description:
+            "Faire cet exercice avec un élastique est une excellente alternative aux machines à poulies ou aux dips.",
+          image: "../Images/Pecs/developpe-decline-avec-elastique.gif",
+        },
+
+        {
+          name: "Écartés à la poulie haute",
+          description:
+            "Les écartés à la poulie haute (cable crossover) sont une variante des écartés à la poulie, un exercice permettant de renforcer les muscles de la poussée, et plus particulièrement ceux de la poitrine.",
+          image:
+            "../Images/Pecs/ecarte-poulie-vis-a-vis-exercice-musculation.gif",
+        },
+        {
+          name: "Développé assis à la machine pour les pectoraux",
+          description:
+            "Le principal moteur du mouvement de développé assis sont les grands pectoraux, également surnommé « pecs » (les muscles de la poitrine). En second plan, les épaules et les triceps sont également bien sollicités.",
+          image: "../Images/Pecs/developpe-machine-assis-pectoraux.gif",
+        },
+
         // ... autres exercices pour les pectoraux
       ],
       triceps: [
