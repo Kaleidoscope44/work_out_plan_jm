@@ -1,3 +1,5 @@
+// Le script pour la partie dynamique
+
 document.addEventListener("DOMContentLoaded", () => {
   const trainingSchedule = document.getElementById("training-schedule");
   const exerciseModal = document.getElementById("exercise-modal");
