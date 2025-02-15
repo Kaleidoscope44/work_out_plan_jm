@@ -145,11 +145,57 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
       triceps: [
         {
-          name: "Dips",
+          name: "Barre front",
           description:
-            "Pour les triceps et les épaules. 3 séries au maximum de répétitions.",
-          image: "../images/dips.jpg",
+            "Le « barre front » (lying barbell tricep extension) est un exercice d’extension des triceps effectué couché avec une barre. Il s’agit d’un exercice populaire dont le principal avantage est d’obtenir un étirement très important du muscle, ce qui permet d’activer davantage de fibres pour l’hypertrophie musculaire.",
+          image: "../Images/Triceps/barre-front.gif",
         },
+
+        {
+          name: "Dips aux barres parallèles",
+          description:
+            "Les dips sont un des exercices de musculation les plus sous-estimés. Avec l’abondance de machines disponibles pour travailler les bras, les épaules et les pectoraux, on a tendance à oublier certains exercices au poids de corps qui pourtant sont redoutablement efficaces.",
+          image: "../Images/Triceps/barre-front.gif",
+        },
+
+        {
+          name: "Extensions verticales à la poulie haute",
+          description:
+            "Un exercice très populaire pour développer les triceps, les extensions verticales à la poulie haute (en anglais cable triceps pushdown) est un incontournable pour développer des bras plus gros et plus forts. L’avantage est que cet exercice fait travailler les trois chefs du muscle triceps.",
+          image: "../Images/Triceps/extension-triceps-poulie-haute.gif",
+        },
+
+        {
+          name: "Extension verticale à la poulie basse",
+          description:
+            "L’extension verticale des triceps à la poulie avec corde (en anglais rope overhead cable extension) est un exercice populaire pour muscler l’arrière des bras. Cet exercice d’isolation permet un étirement important des muscles triceps pendant la partie excentrique (négative) du mouvement. Il s’agit donc d’un excellent moyen d’augmenter la taille des bras.",
+          image:
+            "../Images/Triceps/extension-verticale-triceps-poulie-basse.gif",
+        },
+
+        {
+          name: "Extension horizontale à la poulie",
+          description:
+            "Les extensions horizontales à la poulie sont un exercice qui permet de travailler principalement les triceps et les deltoïdes postérieurs. Il s’agit d’un mouvement peu courant, mais cela n’enlève en rien son efficacité. Il s’agit en quelque sorte de deux exercices en un qui ciblent deux muscles différents. Vous pouvez donc faire d’une pierre deux coups, ce qui vous permettra de gagner du temps et de rendre votre entraînement plus productif.",
+          image: "../Images/Triceps/extension-horizontale-poulie.gif",
+        },
+
+        {
+          name: "Extensions des triceps incliné avec haltères",
+          description:
+            "Les extensions de triceps avec haltères inclinés sont un excellent exercice pour isoler vos triceps. Il peut être effectué aussi bien par ceux qui cherchent à obtenir de plus gros triceps que par ceux qui cherchent à augmenter leur force. Cet exercice est une variante des extensions de triceps avec haltères couchés avec une légère inclinaison du mouvement. Cette inclinaison augmente l’amplitude du mouvement, ce qui permet d’obtenir un meilleur étirement du triceps en fin de mouvement.",
+          image:
+            "../Images/Triceps/extension-triceps-banc-incline-halteres.gif",
+        },
+
+        {
+          name: "Extensions verticales à deux mains avec haltère",
+          description:
+            "Les extensions verticales à deux mains avec haltère en position assise inclinée (en anglais incline two arm dumbbell extension) sont un mouvement fantastique qui permet de développer la masse et la force des trois chefs des triceps.",
+          image:
+            "../Images/Triceps/extensions-verticales-a-deux-mains-avec-haltere.gif",
+        },
+
         // ... autres exercices pour les triceps
       ],
     },
@@ -209,6 +255,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const exercises = (trainingData[day] && trainingData[day][type]) || [];
 
     exercises.forEach((exercise) => {
+      // description tranquée
+      let description = exercise.description;
+      console.log(
+        "Description initiale:",
+        description,
+        "Longueur:",
+        description.length
+      );
+
+      if (description.length > 212) {
+        description = description.substring(0, 212) + "...";
+        console.log("Description tronquée:", description);
+      }
       const card = document.createElement("div");
       card.classList.add("col-md-4", "mb-4"); // Utiliser les classes Bootstrap pour la mise en page
       card.innerHTML = `

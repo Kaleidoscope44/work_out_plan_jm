@@ -5,7 +5,7 @@ body {
   padding: 0;
   background-color: #f4f4f4;
   color: #333;
-  background-image: url("image.png");
+  background-image: url("../image.png");
   background-size: cover; /* Ajuste l'image pour couvrir tout l'écran */
   background-position: center; /* Centre l'image */
   background-repeat: no-repeat; /* Empêche la répétition de l'image */
@@ -339,6 +339,7 @@ footer {
 
 .card-title {
   margin-top: 0;
+  font-weight: bold;
 }
 
 .card-text {
