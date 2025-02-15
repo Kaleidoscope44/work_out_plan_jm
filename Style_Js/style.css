@@ -278,10 +278,9 @@ nav ul ul {
 }
 
 @media screen and (max-width: 480px) {
-  nav ul ul {
-    left: auto; /* Désactive la position par défaut à gauche */
-    right: 0;   /* Positionne le sous-menu à droite pour éviter le débordement */
-    width: 100%; /* Optionnel : occuper toute la largeur pour mieux s'afficher */
+  nav a {
+    padding: 10px 9px; /* Réduit le padding pour éviter les débordements */
+    font-size: 14px;    /* Ajuste la taille de police si nécessaire */
   }
 }
 
