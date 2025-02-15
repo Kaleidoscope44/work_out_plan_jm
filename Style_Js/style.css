@@ -1,4 +1,13 @@
 /* style.css */
+@media screen and (max-width: 480px) {
+    body {
+      background: #ccc; /* Optionnel, comme fallback */
+      background-image: url("../fond_mobile.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
 body {
   font-family: sans-serif;
   margin: 0;
@@ -8,7 +17,7 @@ body {
   background-image: url("../image.png");
   background-size: cover; /* Ajuste l'image pour couvrir tout l'écran */
   background-position: center; /* Centre l'image */
-  background-repeat: no-repeat; /* Empêche la répétition de l'image */
+  /* background-repeat: no-repeat; */
 }
 
 header {
@@ -266,6 +275,14 @@ nav ul ul {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 1;
   border-radius: 5px; /* Rounded corners for dropdown */
+}
+
+@media screen and (max-width: 480px) {
+  nav ul ul {
+    left: auto; /* Désactive la position par défaut à gauche */
+    right: 0;   /* Positionne le sous-menu à droite pour éviter le débordement */
+    width: 100%; /* Optionnel : occuper toute la largeur pour mieux s'afficher */
+  }
 }
 
 nav li:hover > ul {
