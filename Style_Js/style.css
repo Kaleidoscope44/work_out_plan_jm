@@ -377,7 +377,7 @@
   /* =========================
      Footer
   ========================= */
-  footer {
+  /* .footer {
     background-color: #333;
     color: #fff;
     text-align: center;
@@ -386,8 +386,61 @@
     bottom: 0;
     width: 100%;
     height: 8%;
+  } */
+  
+  .footer {
+    background-color: #333;
+    color: #fff;
+    /* Le footer est déjà fixe si nécessaire, sinon retirez position fixed */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
   
+  .footer .container {
+    /* Utilisation de flex pour aligner le texte à gauche et les icônes à droite */
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    /* padding: 0.5rem 1rem; */
+    /* margin-right: 100px; */
+    /* gap: 2.5rem; */
+  }
+  
+  .footer p {
+    margin: 0;
+
+  }
+  
+  .footer .social-icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer .social-icons a {
+    margin-left: 2rem;
+  }
+  
+  .footer .social-icon {
+    max-height: 30px;
+    width: auto;
+    transition: opacity 0.3s ease;
+  }
+  
+  .footer .social-icon:hover {
+    opacity: 0.8;
+  }
+  
+  /* Ajustements pour les petits écrans */
+  @media (max-width: 480px) {
+    .footer .social-icon {
+      max-height: 25px;
+    }
+  }
+  
+  
+  
+
   /* =========================
      Media Queries Globales
   ========================= */
