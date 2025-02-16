@@ -80,9 +80,31 @@
         });
         
         function downloadPDF() {
-          const element = document.body;
-          html2pdf().from(element).save("Mon_programme_fitness.pdf");
-        }
+        // Sélection des éléments à modifier
+        const title = document.querySelector("h2");
+        const button = document.querySelector("button");
+        const body = document.body;
+
+        // Sauvegarde des styles originaux
+        const originalTitleColor = title.style.color;
+        const originalBodyBg = body.style.backgroundImage;
+
+        // Application des modifications
+        title.style.color = "black"; // Changement du titre en noir
+        button.style.display = "none"; // Suppression du bouton
+        body.style.background = "white"; // Mise en arrière-plan blanc
+
+        // Génération du PDF
+        html2pdf()
+            .from(document.body)
+            .save("Mon_programme_fitness.pdf")
+            .then(() => {
+                // Restauration des styles après le téléchargement
+                title.style.color = originalTitleColor;
+                button.style.display = "inline-block";
+                body.style.backgroundImage = originalBodyBg;
+            });
+    }
     </script>
       
       
@@ -122,6 +144,26 @@
             color:#fff;
         }
 
+        @media (max-width: 768px) {
+          table {
+            font-size: 0.9rem; /* Réduit la taille de la police */
+          }
+          table th,
+          table td {
+            padding: 0.5rem; /* Réduit les marges internes */
+          }
+        }
+
+        @media (max-width: 480px) {
+          table {
+            font-size: 0.8rem; /* Encore plus petit sur téléphone */
+          }
+          table th,
+          table td {
+            padding: 0.4rem;
+          }
+        }
+
     </style>
 </head>
 <body>
@@ -133,22 +175,24 @@
             </button>
         </div>
         <div id="exercise-table-container"></div>
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>Jour</th>
-                    <th>Partie du corps</th>
-                    <th>Exercice</th>
-                    <th>Séries</th>
-                    <th>Répétitions</th>
-                    <th>Poids (kg)</th>
-                    <th>Repos (s)</th>
-                </tr>
-            </thead>
-            <tbody id="exercise-table-body">
-                <!-- Les exercices sélectionnés seront ajoutés ici -->
-            </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+              <thead class="table-dark">
+                  <tr>
+                      <th>Jour</th>
+                      <th>Partie du corps</th>
+                      <th>Exercice</th>
+                      <th>Séries</th>
+                      <th>Répétitions</th>
+                      <th>Poids (kg)</th>
+                      <th>Repos (s)</th>
+                  </tr>
+              </thead>
+              <tbody id="exercise-table-body">
+                  <!-- Les exercices sélectionnés seront ajoutés ici -->
+              </tbody>
+          </table>
+        </div>  
     </div>
 </body>
 </html>

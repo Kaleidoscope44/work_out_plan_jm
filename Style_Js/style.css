@@ -30,6 +30,7 @@
   header {
     background-color: #333;
     color: #fff;
+    /* position: fixed; */
     padding: 1rem 0;
     text-align: center;
     position: relative;
@@ -244,6 +245,7 @@
   nav.navbar {
     background-color: #fff; /* Fond blanc pour la Navbar */
     padding: 10px 20px;
+    /* position: fixed; */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
