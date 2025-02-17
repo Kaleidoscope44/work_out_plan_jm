@@ -147,6 +147,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Gestion du clic pour mettre en surbrillance le jour sélectionné
+  const dayLinks = document.querySelectorAll("nav .dropdown-toggle");
+  dayLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      // Retirer la classe active de tous les jours
+      dayLinks.forEach((l) => l.classList.remove("active-day"));
+      // Appliquer la classe active à l'élément cliqué
+      this.classList.add("active-day");
+    });
+  });
+
   function openModal(day, exercise, bodyPart) {
     const modalTitle = document.querySelector("#exercise-modal .modal-title");
     const modalBody = document.querySelector("#exercise-modal .modal-body");
