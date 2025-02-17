@@ -158,7 +158,7 @@ const trainingData = {
         name: "Dips aux barres parallèles",
         description:
           "Les dips sont un des exercices de musculation les plus sous-estimés. Avec l’abondance de machines disponibles pour travailler les bras, les épaules et les pectoraux, on a tendance à oublier certains exercices au poids de corps qui pourtant sont redoutablement efficaces.",
-        image: "../Images/Triceps/barre-front.gif",
+        image: "../Images/Triceps/dips-triceps.gif",
       },
 
       {
@@ -626,7 +626,7 @@ const trainingData = {
         name: "Dips aux barres parallèles",
         description:
           "Les dips sont un des exercices de musculation les plus sous-estimés. Avec l’abondance de machines disponibles pour travailler les bras, les épaules et les pectoraux, on a tendance à oublier certains exercices au poids de corps qui pourtant sont redoutablement efficaces.",
-        image: "../Images/Triceps/barre-front.gif",
+        image: "../Images/Triceps/dips-triceps.gif",
       },
 
       {
@@ -1094,7 +1094,7 @@ const trainingData = {
         name: "Dips aux barres parallèles",
         description:
           "Les dips sont un des exercices de musculation les plus sous-estimés. Avec l’abondance de machines disponibles pour travailler les bras, les épaules et les pectoraux, on a tendance à oublier certains exercices au poids de corps qui pourtant sont redoutablement efficaces.",
-        image: "../Images/Triceps/barre-front.gif",
+        image: "../Images/Triceps/dips-triceps.gif",
       },
 
       {
@@ -1562,7 +1562,7 @@ const trainingData = {
         name: "Dips aux barres parallèles",
         description:
           "Les dips sont un des exercices de musculation les plus sous-estimés. Avec l’abondance de machines disponibles pour travailler les bras, les épaules et les pectoraux, on a tendance à oublier certains exercices au poids de corps qui pourtant sont redoutablement efficaces.",
-        image: "../Images/Triceps/barre-front.gif",
+        image: "../Images/Triceps/dips-triceps.gif",
       },
 
       {
@@ -2029,7 +2029,7 @@ const trainingData = {
         name: "Dips aux barres parallèles",
         description:
           "Les dips sont un des exercices de musculation les plus sous-estimés. Avec l’abondance de machines disponibles pour travailler les bras, les épaules et les pectoraux, on a tendance à oublier certains exercices au poids de corps qui pourtant sont redoutablement efficaces.",
-        image: "../Images/Triceps/barre-front.gif",
+        image: "../Images/Triceps/dips-triceps.gif",
       },
 
       {
@@ -2496,7 +2496,7 @@ const trainingData = {
         name: "Dips aux barres parallèles",
         description:
           "Les dips sont un des exercices de musculation les plus sous-estimés. Avec l’abondance de machines disponibles pour travailler les bras, les épaules et les pectoraux, on a tendance à oublier certains exercices au poids de corps qui pourtant sont redoutablement efficaces.",
-        image: "../Images/Triceps/barre-front.gif",
+        image: "../Images/Triceps/dips-triceps.gif",
       },
 
       {
@@ -2963,7 +2963,7 @@ const trainingData = {
         name: "Dips aux barres parallèles",
         description:
           "Les dips sont un des exercices de musculation les plus sous-estimés. Avec l’abondance de machines disponibles pour travailler les bras, les épaules et les pectoraux, on a tendance à oublier certains exercices au poids de corps qui pourtant sont redoutablement efficaces.",
-        image: "../Images/Triceps/barre-front.gif",
+        image: "../Images/Triceps/dips-triceps.gif",
       },
 
       {
