@@ -166,6 +166,14 @@
                 </ul>
               </li>
             </ul>
+            <!-- Barre de recherche placée à droite -->
+            <form class="d-flex ms-auto" id="searchForm">
+              <input class="form-control me-2" type="search" placeholder="Rechercher un exercice" aria-label="Search" id="searchInput" list="suggestions">
+              <datalist id="suggestions">
+                <!-- Les suggestions seront générées ici -->
+              </datalist>
+              <button class="btn btn-outline-success" type="button" id="searchBtn">Go</button>
+            </form>            
           </div>
         </div>
       </nav>

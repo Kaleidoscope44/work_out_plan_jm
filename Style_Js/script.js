@@ -4,57 +4,144 @@ document.addEventListener("DOMContentLoaded", () => {
   const trainingSchedule = document.getElementById("training-schedule");
   const exerciseModal = document.getElementById("exercise-modal");
 
+  // Fonction pour extraire tous les noms uniques d'exercices
+  function populateSuggestions() {
+    const suggestionSet = new Set();
+    for (const day in trainingData) {
+      if (trainingData.hasOwnProperty(day)) {
+        for (const type in trainingData[day]) {
+          if (trainingData[day].hasOwnProperty(type)) {
+            trainingData[day][type].forEach((exercise) => {
+              suggestionSet.add(exercise.name);
+            });
+          }
+        }
+      }
+    }
+    const datalist = document.getElementById("suggestions");
+    suggestionSet.forEach((name) => {
+      const option = document.createElement("option");
+      option.value = name;
+      datalist.appendChild(option);
+    });
+  }
+
+  // Appel de la fonction pour remplir le datalist avec les suggestions
+  populateSuggestions();
+
+  // Fonction pour afficher les exercices (existant déjà)
   function displayExercises(day, type) {
     trainingSchedule.innerHTML = ""; // Effacer les anciennes cartes
-
     const exercises = (trainingData[day] && trainingData[day][type]) || [];
-
     exercises.forEach((exercise) => {
-      // description tranquée
       const fullDescription = exercise.description;
       let truncatedDescription = fullDescription;
-
       if (fullDescription.length > 200) {
         truncatedDescription = fullDescription.substring(0, 200) + "...";
       }
       const card = document.createElement("div");
-      card.classList.add("col-md-4", "mb-4"); // Utiliser les classes Bootstrap pour la mise en page
+      card.classList.add("col-md-4", "mb-4");
       card.innerHTML = `
-                <div class="card solution_card">
-                    <a href="${exercise.image}" target="_blank">
-                      <img src="${exercise.image}" class="card-img-top" alt="${exercise.name}">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">${exercise.name}</h5>
-                        <p class="card-text">${truncatedDescription}</p>
-                        <button class="btn btn-primary read_more_btn">En savoir plus</button>
-                    </div>
-                </div>
-            `;
-
+        <div class="card solution_card">
+          <a href="${exercise.image}" target="_blank">
+            <img src="${exercise.image}" class="card-img-top" alt="${exercise.name}">
+          </a>
+          <div class="card-body">
+              <h5 class="card-title">${exercise.name}</h5>
+              <p class="card-text">${truncatedDescription}</p>
+              <button class="btn btn-primary read_more_btn">En savoir plus</button>
+          </div>
+        </div>
+      `;
       const readMoreBtn = card.querySelector(".read_more_btn");
       readMoreBtn.addEventListener("click", () => {
         openModal(day, exercise, type);
       });
-
       trainingSchedule.appendChild(card);
     });
   }
 
-  // Gestion des clics sur les sous-menus
-  // Mise à jour pour les menus Bootstrap
+  // Fonction de recherche par mot-clé
+  document.getElementById("searchBtn").addEventListener("click", function () {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    trainingSchedule.innerHTML = "";
+    const results = [];
+
+    // Recherche dans tous les exercices de trainingData
+    for (const day in trainingData) {
+      if (trainingData.hasOwnProperty(day)) {
+        for (const type in trainingData[day]) {
+          if (trainingData[day].hasOwnProperty(type)) {
+            trainingData[day][type].forEach((exercise) => {
+              if (exercise.name.toLowerCase().includes(query)) {
+                results.push({ day, type, exercise });
+              }
+            });
+          }
+        }
+      }
+    }
+
+    // Filtrer les doublons basés uniquement sur le nom de l'exercice (en minuscules)
+    const uniqueResults = [];
+    results.forEach((item) => {
+      const nameLower = item.exercise.name.toLowerCase();
+      if (
+        !uniqueResults.some((u) => u.exercise.name.toLowerCase() === nameLower)
+      ) {
+        uniqueResults.push(item);
+      }
+    });
+
+    if (uniqueResults.length === 0) {
+      trainingSchedule.innerHTML = "<p>Aucun exercice trouvé.</p>";
+    } else {
+      uniqueResults.forEach((item) => {
+        const fullDesc = item.exercise.description;
+        let truncatedDesc = fullDesc;
+        if (fullDesc.length > 200) {
+          truncatedDesc = fullDesc.substring(0, 200) + "...";
+        }
+        const card = document.createElement("div");
+        card.classList.add("col-md-4", "mb-4");
+        card.innerHTML = `
+          <div class="card solution_card">
+            <a href="${item.exercise.image}" target="_blank">
+              <img src="${item.exercise.image}" class="card-img-top" alt="${
+          item.exercise.name
+        }">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">${item.exercise.name}</h5>
+              <p class="card-text">${truncatedDesc}</p>
+              <p class="small">Jour : ${
+                item.day.charAt(0).toUpperCase() + item.day.slice(1)
+              } - Groupe : ${
+          item.type.charAt(0).toUpperCase() + item.type.slice(1)
+        }</p>
+              <button class="btn btn-primary read_more_btn">En savoir plus</button>
+            </div>
+          </div>
+        `;
+        const readMoreBtn = card.querySelector(".read_more_btn");
+        readMoreBtn.addEventListener("click", () => {
+          openModal(item.day, item.exercise, item.type);
+        });
+        trainingSchedule.appendChild(card);
+      });
+    }
+  });
+
+  // Gestion des clics sur les sous-menus pour les dropdowns (déjà existant)
   const typeLinks = document.querySelectorAll("nav .dropdown-menu a");
   typeLinks.forEach((typeLink) => {
     typeLink.addEventListener("click", (event) => {
       event.preventDefault();
-      // Remonte jusqu'au parent avec la classe "dropdown"
       const dropdown = typeLink.closest(".dropdown");
-      // Récupère le jour (ex: "Lundi") depuis le lien dropdown-toggle
       const selectedDay = dropdown
         .querySelector(".dropdown-toggle")
         .textContent.trim()
         .toLowerCase();
-      // Récupère le type (ex: "Dos", "Biceps", etc.) à partir du lien cliqué
       const selectedType = typeLink.textContent.trim().toLowerCase();
       displayExercises(selectedDay, selectedType);
     });
@@ -63,38 +150,32 @@ document.addEventListener("DOMContentLoaded", () => {
   function openModal(day, exercise, bodyPart) {
     const modalTitle = document.querySelector("#exercise-modal .modal-title");
     const modalBody = document.querySelector("#exercise-modal .modal-body");
-
     modalTitle.textContent = exercise.name;
-
     modalBody.innerHTML = `
-        <p>${exercise.description}</p>
-        <form id="exercise-form">
-            <div class="form-group">
-                <label for="series">Nombre de séries :</label>
-                <input type="number" id="series" class="form-control" min="1" value="3">
-            </div>
-            <div class="form-group">
-                <label for="reps">Nombre de répétitions :</label>
-                <input type="number" id="reps" class="form-control" min="1" value="10">
-            </div>
-            <div class="form-group">
-                <label for="weight">Poids (kg) :</label>
-                <input type="number" id="weight" class="form-control" min="0" value="0">
-            </div>
-            <div class="form-group">
-                <label for="rest">Temps de repos (secondes) :</label>
-                <input type="number" id="rest" class="form-control" min="10" value="60">
-            </div>
-        </form>
+      <p>${exercise.description}</p>
+      <form id="exercise-form">
+          <div class="form-group">
+              <label for="series">Nombre de séries :</label>
+              <input type="number" id="series" class="form-control" min="1" value="3">
+          </div>
+          <div class="form-group">
+              <label for="reps">Nombre de répétitions :</label>
+              <input type="number" id="reps" class="form-control" min="1" value="10">
+          </div>
+          <div class="form-group">
+              <label for="weight">Poids (kg) :</label>
+              <input type="number" id="weight" class="form-control" min="0" value="0">
+          </div>
+          <div class="form-group">
+              <label for="rest">Temps de repos (secondes) :</label>
+              <input type="number" id="rest" class="form-control" min="10" value="60">
+          </div>
+      </form>
     `;
-
-    // Affichage du modal Bootstrap
     const modal = new bootstrap.Modal(
       document.getElementById("exercise-modal")
     );
     modal.show();
-
-    // Associer les données du formulaire au bouton "Ajouter"
     document.getElementById("add-exercise").onclick = function () {
       addExerciseToCart(day, exercise.name, bodyPart);
     };

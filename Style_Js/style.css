@@ -299,6 +299,12 @@
       font-size: 14px !important;
     }
   }
+
+  #searchBtn:hover {
+    background-color: rgb(117, 179, 237) !important;
+    border-color: rgb(117, 179, 237) !important;
+    color: white !important;
+  }
   
   /* =========================
      Contenu Principal & Cartes
