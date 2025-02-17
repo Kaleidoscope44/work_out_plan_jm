@@ -1,6 +1,7 @@
 /* =========================
    Fond de page
 ========================= */
+
 /* Sur mobile, fond gris avec image mobile (optionnel) */
 @media screen and (max-width: 480px) {
     body {
@@ -20,7 +21,7 @@
     color: #333;
     background-image: url("../image.png");
     background-size: cover; /* L'image couvre tout l'écran */
-    background-position: center; /* L'image est centrée */
+    background-position: center; 
     /* background-repeat: no-repeat; */
   }
   
@@ -30,14 +31,11 @@
   header {
     background-color: #333;
     color: #fff;
-    /* position: fixed; */
     padding: 1rem 0;
     text-align: center;
     position: relative;
   }
   
-  
-
   header .notification-box {
     position: absolute;
     z-index: 1000;
@@ -238,7 +236,6 @@
   }
 
 
-
   /* =========================
      Navbar Bootstrap
   ========================= */
@@ -300,6 +297,9 @@
     }
   }
 
+  /* =========================
+  Contenu de la barre de recherche
+  ========================= */
   #searchBtn:hover {
     background-color: rgb(117, 179, 237) !important;
     border-color: rgb(117, 179, 237) !important;
@@ -496,8 +496,4 @@
     100% { opacity: 0; }
   }
   
-  @keyframes moon-moving {
-    0% { transform: translate(-200%, 600%); }
-    100% { transform: translate(800%, -200%); }
-  }
-  
+
