@@ -305,6 +305,11 @@
     border-color: rgb(117, 179, 237) !important;
     color: white !important;
   }
+  #searchInput {
+    background: url('../chercher.png') no-repeat 10px center;
+    background-size: 16px 16px;
+    padding-left: 35px;
+  }
   
   /* =========================
      Contenu Principal & Cartes
