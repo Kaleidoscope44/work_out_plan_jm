@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Appel de la fonction pour remplir le datalist avec les suggestions
   populateSuggestions();
 
-  // Fonction pour afficher les exercices (existant déjà)
+  // Fonction pour afficher les exercices
   function displayExercises(day, type) {
     trainingSchedule.innerHTML = ""; // Effacer les anciennes cartes
     const exercises = (trainingData[day] && trainingData[day][type]) || [];
