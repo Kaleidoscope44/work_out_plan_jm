@@ -35,10 +35,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const exercises = (trainingData[day] && trainingData[day][type]) || [];
     exercises.forEach((exercise) => {
       const fullDescription = exercise.description;
-      let truncatedDescription = fullDescription;
-      if (fullDescription.length > 200) {
-        truncatedDescription = fullDescription.substring(0, 200) + "...";
-      }
+      // let truncatedDescription = fullDescription;
+      // if (fullDescription.length > 200) {
+      //   truncatedDescription = fullDescription.substring(0, 200) + "...";
+      let truncatedDescription =
+        fullDescription.length > 200
+          ? fullDescription.substring(
+              0,
+              fullDescription.lastIndexOf(" ", 200)
+            ) + "..."
+          : fullDescription;
+
       const card = document.createElement("div");
       card.classList.add("col-md-4", "mb-4");
       card.innerHTML = `
@@ -132,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Gestion des clics sur les sous-menus pour les dropdowns (déjà existant)
+  // Gestion des clics sur les sous-menus pour les dropdowns
   const typeLinks = document.querySelectorAll("nav .dropdown-menu a");
   typeLinks.forEach((typeLink) => {
     typeLink.addEventListener("click", (event) => {
@@ -268,7 +275,9 @@ function generatePDF() {
 function clearCart() {
   if (confirm("Voulez-vous vraiment vider le panier ?")) {
     savedExercises = [];
-    localStorage.removeItem("trainingProgram");
+    // localStorage.removeItem("trainingProgram");
+    localStorage.removeItem("exerciseCart");
+
     updateCartCount(0);
     alert("Le panier a été vidé !");
   }
