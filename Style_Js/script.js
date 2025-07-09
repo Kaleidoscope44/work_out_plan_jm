@@ -4,6 +4,76 @@ document.addEventListener("DOMContentLoaded", () => {
   const trainingSchedule = document.getElementById("training-schedule");
   const exerciseModal = document.getElementById("exercise-modal");
 
+  //
+  const notificationBox = document.querySelector(".notification-box");
+  const cartModal = document.createElement("div");
+  cartModal.classList.add("modal", "fade");
+  cartModal.id = "cart-modal";
+  cartModal.innerHTML = `
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Mon panier</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <ul id="cart-items" class="list-group"></ul>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+              </div>
+          </div>
+      </div>
+  `;
+  document.body.appendChild(cartModal);
+  const cartModalInstance = new bootstrap.Modal(cartModal);
+
+  notificationBox.addEventListener("click", function () {
+    updateCartModal();
+    cartModalInstance.show();
+  });
+
+  function updateCartModal() {
+    const cartItemsContainer = document.getElementById("cart-items");
+    cartItemsContainer.innerHTML = "";
+    let exercises = JSON.parse(localStorage.getItem("exerciseCart")) || [];
+
+    if (exercises.length === 0) {
+      cartItemsContainer.innerHTML =
+        '<li class="list-group-item">Aucun exercice ajouté.</li>';
+    } else {
+      exercises.forEach((exercise, index) => {
+        let li = document.createElement("li");
+        li.classList.add(
+          "list-group-item",
+          "d-flex",
+          "justify-content-between",
+          "align-items-center"
+        );
+        li.innerHTML = `
+          <div>
+            <strong>${exercise.name}</strong> (${exercise.day} - ${exercise.bodyPart})<br>
+            ${exercise.series} séries x ${exercise.reps} reps - ${exercise.weight}kg - ${exercise.rest}s repos
+          </div>
+          <button class="btn btn-danger btn-sm remove-exercise" data-index="${index}">Supprimer</button>
+        `;
+        cartItemsContainer.appendChild(li);
+      });
+    }
+  }
+
+  document.addEventListener("click", function (event) {
+    if (event.target.classList.contains("remove-exercise")) {
+      let index = event.target.getAttribute("data-index");
+      let exercises = JSON.parse(localStorage.getItem("exerciseCart")) || [];
+      exercises.splice(index, 1);
+      localStorage.setItem("exerciseCart", JSON.stringify(exercises));
+      updateCartModal();
+      document.getElementById("cart-count").textContent = exercises.length;
+    }
+  });
+
+  //
   // Fonction pour extraire tous les noms uniques d'exercices
   function populateSuggestions() {
     const suggestionSet = new Set();
@@ -275,6 +345,7 @@ function generatePDF() {
 function clearCart() {
   if (confirm("Voulez-vous vraiment vider le panier ?")) {
     savedExercises = [];
+    console.log("clearCart() a été exécuté !");
     // localStorage.removeItem("trainingProgram");
     localStorage.removeItem("exerciseCart");
 
